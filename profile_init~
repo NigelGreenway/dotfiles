@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-# Go get all the imports
-for file in $(find -L .bash/partials -type f)
-do
-    source $file
-done
-
-# export HISTIGNORE="$history_ignore"
