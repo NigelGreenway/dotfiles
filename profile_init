@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
 # Go get all the imports
-for file in $(find -L .bash/partials -type f)
+for file in $(find -L ${DIR}/{partials,plugins} -type f)
 do
     source $file
 done
 
-export HISTIGNORE="$_history_ignore"

@@ -23,5 +23,3 @@ force_color_prompt=yes
 
 # use colour prompt
 color_prompt=yes
-
-_history_ignore="&:[ ]*:exit:ls:bg:fg:history"
