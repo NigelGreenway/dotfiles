@@ -1,11 +1,33 @@
 #!/bin/env bash
 
-COLOUR__USERNAME="\[\033[38;5;13m\]"
-COLOUR__HOSTNAME="\[\033[38;5;6m\]"
-COLOUR__DIRECTORY="\[\033[38;5;28m\]"
-COLOUR__RESET="\[\033[38;5;15m\]"
+LIGHT_PURPLE="\[\033[38;5;13m\]"
+CYAN="\[\033[38;5;6m\]"
+GREEN="\[\033[38;5;28m\]"
+WHITE="\[\033[38;5;15m\]"
+
+git_info() {
+    git_status="`git status -unormal 2>&1`"
+    if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
+        echo -e "\e[96m@\e[95m$(git rev-parse --abbrev-ref HEAD)"
+    fi
+}
+
+USERNAME="${LIGHT_PURPLE}\u"
+HOSTNAME="${CYAN}\h"
+DIRECTORY="${GREEN}\w"
+GIT_META_DATA="\n$(git_info)"
+USER_PROMPT="\n${CYAN}> ${WHITE}"
+
+export PS1="${USERNAME}@${HOSTNAME} ${DIRECTORY}${GIT_META_DATA}${USER_PROMPT}"
 
 
-# export PS1="\[\033[38;5;13m\]\u\[$(tput sgr0)\]\[\033[38;5;22m\]@\h\[$(tput sgr0)\]\[\033[38;5;6m\]\w \[$(tput sgr0)\]\[\033[38;5;15m\] \n\[$(tput sgr0)\]\[\033[38;5;6m\]>\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 
-export PS1="${COLOUR__USERNAME}\u${COLOUR__HOSTNAME}@\h ${COLOUR__DIRECTORY}\w \n${COLOUR__HOSTNAME}>${COLOUR__RESET} "
+unset LIGHT_PURPLE
+unset CYAN
+unset GREEN
+unset WHITE
+unset USERNAME
+unset HOSTNAME
+unset DIRECTORY
+unset GIT_META_DATA
+unset USER_PROMPT
