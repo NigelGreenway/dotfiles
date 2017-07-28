@@ -6,21 +6,63 @@ GREEN="\[\033[38;5;28m\]"
 WHITE="\[\033[38;5;15m\]"
 
 git_info() {
-    git_status="`git status -unormal 2>&1`"
-    if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-        echo -e "\e[96m@\e[95m$(git rev-parse --abbrev-ref HEAD)"
+    if [[ -n "$(git rev-parse --is-inside-work-tree 2> /dev/null)" ]]; then
+        local git_status=$(git status -sb 2> /dev/null)
+        function is_ahead {
+            local count=`echo "${git_status}" | sed -n 's/.*\(ahead [[:digit:]]*\).*/\1/p' | awk '{ print $2 }'`
+            [[ ${count} -gt 0 ]] && echo ${count}${SCM_GIT_AHEAD_CHAR}
+        }
+
+        function is_behind {
+            local count=`echo "${git_status}" | sed -n 's/.*\(behind [[:digit:]]*\).*/\1/p' | awk '{ print $2}'`
+            [[ ${count} -gt 0 ]] && echo ${count}${SCM_GIT_BEHIND_CHAR}
+        }
+
+        function is_dirty {
+            if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]
+            then
+                echo -e "\e[31m✗ \e[35m| "
+            else
+                echo -e "\e[32m✓"
+            fi
+        }
+
+        function staged_changes {
+            local count=`echo "${git_status}" | grep "^A" | wc -l`
+            [[ ${count} -gt 0 ]] && echo "S:${count}"
+        }
+
+        function tracked_changes {
+            local count=`echo "${git_status}" | grep "^ M" | wc -l`
+            [[ ${count} -gt 0 ]] && echo " ?:${count}"
+        }
+
+        function unstaged_changes {
+            local count=`echo "${git_status}" | grep "^M" | wc -l`
+            [[ ${count} -gt 0 ]] && echo " U:${count}"
+        }
+
+        local project_path=`git rev-parse --show-toplevel`
+        local branch_name="\e[95m$(git rev-parse --abbrev-ref HEAD)"
+        local project_name="\e[96m${project_path##*/}"
+        local ahead="\e[32m$(is_ahead)"
+        local behind="\e[31m$(is_behind)"
+        local dirty="$(is_dirty)"
+        local staged="\e[32m$(staged_changes)"
+        local tracked="\e[34m$(tracked_changes)"
+        local unstaged="\e[31m$(unstaged_changes)"
+
+        echo -e "\n${project_name}@${branch_name} ${dirty}${ahead}${behind} ${staged}${tracked}${unstaged}"
     fi
 }
 
 USERNAME="${LIGHT_PURPLE}\u"
 HOSTNAME="${CYAN}\h"
 DIRECTORY="${GREEN}\w"
-GIT_META_DATA="\n$(git_info)"
+GIT_INFO="\$(git_info)"
 USER_PROMPT="\n${CYAN}> ${WHITE}"
 
-export PS1="${USERNAME}@${HOSTNAME} ${DIRECTORY}${GIT_META_DATA}${USER_PROMPT}"
-
-
+export PS1="${USERNAME}@${HOSTNAME} ${DIRECTORY}${GIT_INFO}${USER_PROMPT}"
 
 unset LIGHT_PURPLE
 unset CYAN
@@ -29,5 +71,5 @@ unset WHITE
 unset USERNAME
 unset HOSTNAME
 unset DIRECTORY
-unset GIT_META_DATA
+unset GIT_INFO
 unset USER_PROMPT
