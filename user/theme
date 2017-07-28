@@ -1,0 +1,11 @@
+#!/bin/env bash
+
+COLOUR__USERNAME="\[\033[38;5;13m\]"
+COLOUR__HOSTNAME="\[\033[38;5;6m\]"
+COLOUR__DIRECTORY="\[\033[38;5;28m\]"
+COLOUR__RESET="\[\033[38;5;15m\]"
+
+
+# export PS1="\[\033[38;5;13m\]\u\[$(tput sgr0)\]\[\033[38;5;22m\]@\h\[$(tput sgr0)\]\[\033[38;5;6m\]\w \[$(tput sgr0)\]\[\033[38;5;15m\] \n\[$(tput sgr0)\]\[\033[38;5;6m\]>\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+
+export PS1="${COLOUR__USERNAME}\u${COLOUR__HOSTNAME}@\h ${COLOUR__DIRECTORY}\w \n${COLOUR__HOSTNAME}>${COLOUR__RESET} "
