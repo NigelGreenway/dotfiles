@@ -1,0 +1,19 @@
+#!/bin/env bash
+
+## Directory listing
+alias ll='ls --color -l'
+
+## Bash helpers
+
+__='
+Allows a bash profile to be loaded easier without them
+extra keystrokes
+'
+function r {
+    if [ -z "$FRAPPER__ALIAS__CLEAR_PROMPT_ON_RELOAD" ]
+    then
+        source $HOME/.bashrc
+    else
+        source $HOME/.bashrc && clear
+    fi
+}
