@@ -1,7 +1,9 @@
 #!/bin/env bash
 
 ## Directory listing
-alias ll='ls --color -l'
+alias ll='ls --color -lh'
+alias lla='ll -a'
+alias lld='vdir --color'
 
 ## Bash helpers
 
