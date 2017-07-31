@@ -5,8 +5,12 @@ CYAN="\[\033[38;5;6m\]"
 GREEN="\[\033[38;5;28m\]"
 WHITE="\[\033[38;5;15m\]"
 
+function is_a_git_directory {
+    [[ -n "$(git rev-parse --is-inside-work-tree 2> /dev/null)" ]] && echo 1
+}
+
 git_info() {
-    if [[ -n "$(git rev-parse --is-inside-work-tree 2> /dev/null)" ]]; then
+    if [[ -n $(is_a_git_directory) ]]; then
         local git_status=$(git status -sb 2> /dev/null)
         function is_ahead {
             local count=`echo "${git_status}" | sed -n 's/.*\(ahead [[:digit:]]*\).*/\1/p' | awk '{ print $2 }'`
@@ -56,13 +60,40 @@ git_info() {
     fi
 }
 
+function display_language_version {
+    if [[ -n $(is_a_git_directory) ]]
+    then
+        local project_root=`git rev-parse --show-toplevel`
+        local has_a_package_manager=0
+
+        if [ -f "${project_root}/composer.json" ]
+        then
+            has_a_package_manager=1
+            local php_version=`php -v | grep "^PHP" | sed -n 's/.*\(PHP [[:digit:]].[[:digit:]].[[:digit:]]*\).*/\1/p'`
+        fi
+
+        if [ -f "${project_root}/package.json" ]
+        then
+            has_a_package_manager=1
+            local node_version=`node -v| sed 's/[^0-9.]//g' | awk '{ print "Njs",$1}'`
+        fi
+
+        if [ $has_a_package_manager == 1 ]
+        then
+            echo -e "| ${php_version}${node_version}"
+        fi
+    fi
+}
+
 USERNAME="${LIGHT_PURPLE}\u"
 HOSTNAME="${CYAN}\h"
 DIRECTORY="${GREEN}\w"
 GIT_INFO="\$(git_info)"
 USER_PROMPT="\n${CYAN}> ${WHITE}"
+LANGUAGE_VERSIONS="\$(display_language_version)"
 
-export PS1="${USERNAME}@${HOSTNAME} ${DIRECTORY}${GIT_INFO}${USER_PROMPT}"
+export PS1="${USERNAME}@${HOSTNAME} ${DIRECTORY} ${LANGUAGE_VERSIONS} ${GIT_INFO}${USER_PROMPT}"
+export PS2="${CYAN}>     ${WHITE}"
 
 unset LIGHT_PURPLE
 unset CYAN
