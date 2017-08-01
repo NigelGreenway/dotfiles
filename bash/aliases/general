@@ -13,10 +13,11 @@ Allows a bash profile to be loaded easier without them
 extra keystrokes
 '
 function r {
-    if [ -z "$FRAPPER__ALIAS__CLEAR_PROMPT_ON_RELOAD" ]
+    if [ -z "${FRAPPER__ALIAS__CLEAR_PROMPT_ON_RELOAD+x}" ]
     then
         source $HOME/.bashrc
     else
-        source $HOME/.bashrc && clear
+        source $HOME/.bashrc
+        clear
     fi
 }
