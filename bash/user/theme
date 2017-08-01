@@ -15,12 +15,12 @@ git_info() {
 
         function is_ahead {
             local count=`echo "${git_status}" | sed -n 's/.*\(ahead [[:digit:]]*\).*/\1/p' | awk '{ print $2 }'`
-            [[ ${count} -gt 0 ]] && echo ${count}${SCM_GIT_AHEAD_CHAR}
+            [[ ${count} -gt 0 ]] && echo " ${count}${SCM_GIT_AHEAD_CHAR}"
         }
 
         function is_behind {
             local count=`echo "${git_status}" | sed -n 's/.*\(behind [[:digit:]]*\).*/\1/p' | awk '{ print $2}'`
-            [[ ${count} -gt 0 ]] && echo ${count}${SCM_GIT_BEHIND_CHAR}
+            [[ ${count} -gt 0 ]] && echo " ${count}${SCM_GIT_BEHIND_CHAR}"
         }
 
         function is_dirty {
@@ -32,19 +32,24 @@ git_info() {
             fi
         }
 
+        function new_files_added {
+            local count=`echo "${git_status}" | grep "^A" | wc -l`
+            [[ ${count} -gt 0 ]] && echo " A:${count}" 
+        }
+
         function staged_changes {
-            local count=`echo "${git_status}" | grep "^M" | wc -l`
-            [[ ${count} -gt 0 ]] && echo "S:${count}"
+            local count=`echo "${git_status}" | egrep "^( M|D)" | wc -l`
+            [[ ${count} -gt 0 ]] && echo " S:${count}"
         }
 
         function tracked_changes {
-            local count=`echo "${git_status}" | grep "^ M" | wc -l`
-            [[ ${count} -gt 0 ]] && echo "?:${count}"
+            local count=`echo "${git_status}" | egrep "^(M|D)" | wc -l`
+            [[ ${count} -gt 0 ]] && echo " U:${count}"
         }
 
         function unstaged_changes {
             local count=`echo "${git_status}" | grep "^??" | wc -l`
-            [[ ${count} -gt 0 ]] && echo " U:${count}"
+            [[ ${count} -gt 0 ]] && echo " ?:${count}"
         }
 
         local project_path=`git rev-parse --show-toplevel`
@@ -57,7 +62,14 @@ git_info() {
         local tracked="\e[34m$(tracked_changes)"
         local unstaged="\e[31m$(unstaged_changes)"
 
-        echo -e "\n${project_name}@${branch_name} ${dirty}${ahead}${behind} \e[96m(${staged}${tracked}${unstaged}\e[96m)"
+        function show_changes {
+            if [[ $(git status -s | wc -l) -gt 0 ]]
+            then
+                echo -e " \e[96m(${staged}${tracked}${unstaged} \e[96m)"
+            fi
+        }
+
+        echo -e "\n${project_name}@${branch_name} ${dirty}${ahead}${behind}$(show_changes)"
     fi
 }
 
