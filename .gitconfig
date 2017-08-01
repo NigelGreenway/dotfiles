@@ -1,0 +1,49 @@
+[user]
+    name = Nigel Greenway
+    email = github@futurepixels.co.uk
+[core]
+    excludesfile = ~/.gitignore_global
+    precomposeunicode = true
+    editor = vim
+[clean]
+    requireForce = false
+[difftool "sublime"]
+    cmd = meld $LOCAL $REMOTE
+[color]
+    ui = true
+[color "status"]
+    added = green
+    changed = blue
+    untracked = red
+[color "diff"]
+    meta = yellow
+    old = red
+    new = green
+[init]
+    templatedir = ~/.git_template
+[push]
+    default = simple
+[mergetool "sublime"]
+    cmd = subl -w $MERGED
+    trustExitCode = false
+[merge]
+    tool = meld
+[alias]
+    undo-commit = reset --soft HEAD^
+    ls= ls-files --modified --deleted --exclude-standard
+    aa = add -A
+    a = add -p
+    s = status -s
+    c = commit
+    co = checkout
+    cb = checkout -b
+    ci = commit -m
+    ca = commit -am
+    ss = stash save
+    sl = stash list
+    u = push
+    d = "!fupdate() { git fetch -p && git merge --ff-only; }; update"
+    qa = diff --cached
+    lg = log --graph --decorate --branches --oneline --remotes --tags --all --color
+[rerere]
+	enabled = true
