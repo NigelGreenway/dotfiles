@@ -4,6 +4,7 @@
 alias ll='ls --color -lh'
 alias lla='ll -a'
 alias lld='vdir --color'
+alias llr='ll -R'
 
 ## Bash helpers
 
