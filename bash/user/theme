@@ -12,6 +12,7 @@ function is_a_git_directory {
 git_info() {
     if [[ -n $(is_a_git_directory) ]]; then
         local git_status=$(git status -sb 2> /dev/null)
+
         function is_ahead {
             local count=`echo "${git_status}" | sed -n 's/.*\(ahead [[:digit:]]*\).*/\1/p' | awk '{ print $2 }'`
             [[ ${count} -gt 0 ]] && echo ${count}${SCM_GIT_AHEAD_CHAR}
@@ -25,7 +26,7 @@ git_info() {
         function is_dirty {
             if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]
             then
-                echo -e "\e[31m✗ \e[35m| "
+                echo -e "\e[31m✗ \e[35m|"
             else
                 echo -e "\e[32m✓"
             fi
