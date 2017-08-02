@@ -38,12 +38,12 @@ git_info() {
         }
 
         function staged_changes {
-            local count=`echo "${git_status}" | egrep "^( M|D)" | wc -l`
+            local count=`echo "${git_status}" | egrep "^(M|D)" | wc -l`
             [[ ${count} -gt 0 ]] && echo " S:${count}"
         }
 
         function tracked_changes {
-            local count=`echo "${git_status}" | egrep "^(M|D)" | wc -l`
+            local count=`echo "${git_status}" | egrep "^( M|D)" | wc -l`
             [[ ${count} -gt 0 ]] && echo " U:${count}"
         }
 
@@ -58,6 +58,7 @@ git_info() {
         local ahead="\e[32m$(is_ahead)"
         local behind="\e[31m$(is_behind)"
         local dirty="$(is_dirty)"
+        local added="\e[32m$(new_files_added)"
         local staged="\e[32m$(staged_changes)"
         local tracked="\e[34m$(tracked_changes)"
         local unstaged="\e[31m$(unstaged_changes)"
@@ -65,7 +66,7 @@ git_info() {
         function show_changes {
             if [[ $(git status -s | wc -l) -gt 0 ]]
             then
-                echo -e " \e[96m(${staged}${tracked}${unstaged} \e[96m)"
+                echo -e " \e[96m(${added}${staged}${tracked}${unstaged} \e[96m)"
             fi
         }
 
