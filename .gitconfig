@@ -34,7 +34,7 @@
     aa = add -A
     a = add -p
     s = status -s
-    c = commit
+    c = commit -v
     co = checkout
     cb = checkout -b
     ci = commit -m
