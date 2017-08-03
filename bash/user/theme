@@ -9,7 +9,7 @@ function is_a_git_directory {
     [[ -n "$(git rev-parse --is-inside-work-tree 2> /dev/null)" ]] && echo 1
 }
 
-git_info() {
+function git_info {
     if [[ -n $(is_a_git_directory) ]]; then
         local git_status=$(git status -sb 2> /dev/null)
 
