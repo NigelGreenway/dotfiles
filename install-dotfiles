@@ -1,7 +1,28 @@
 #!/bin/env bash
 
+# check if user is root
+if [ "$(id -u)" != 0 ]
+then
+    echo "Please log in as root"
+    echo -e "\e[31mRead the code before running!\n"
+
+    exit 1
+fi
+
 # Copy over the dotfiles
 
 # Download external tools/plugins
 
+function install_plugins {
 
+    local python_plugins=(
+        'pygments'
+    )
+
+    for plugin in "${python_plugins[@]}"
+    do
+        pip install "${plugin}"
+    done
+}
+
+install_plugins
