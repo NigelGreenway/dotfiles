@@ -43,7 +43,7 @@ function git_info {
         }
 
         function tracked_changes {
-            local count=`echo "${git_status}" | egrep "^( M|MM|D)" | wc -l`
+            local count=`echo "${git_status}" | egrep "^( M|MM| D|D)" | wc -l`
             [[ ${count} -gt 0 ]] && echo " U:${count}"
         }
 
