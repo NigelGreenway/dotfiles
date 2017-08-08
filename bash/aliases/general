@@ -6,6 +6,9 @@ alias lla='ll -a'
 alias lld='vdir --color'
 alias llr='ll -R'
 
+## File preview
+alias cat='pygmentize -g'
+
 ## Bash helpers
 
 __='
