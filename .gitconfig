@@ -46,6 +46,6 @@
     qa = diff --cached
     lg = log --graph --decorate --branches --oneline --remotes --tags --all --color
 [rerere]
-	enabled = true
+    enabled = true
 [pull]
     rebase = true
