@@ -10,7 +10,7 @@ if [ -d $HOME/.frapper ]; then
     # Go get all the installed bash plugins
     for plugin in $(find -L $HOME/.frapper/vendor/bash -type f)
     do
-        source $file
+        source $plugin
     done
 
     # Check if tmux is loaded and then loaded
