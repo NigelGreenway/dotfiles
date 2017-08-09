@@ -20,7 +20,8 @@ function initialise_frapper {
 function install_dotfiles {
     local INSTALLER_LOCATION=$(dirname "$(readlink -f "$0")")
     cp -r "$INSTALLER_LOCATION/bash/" $USER_HOME_DIRECTORY/.frapper/
-    cp "$INSTALLER_LOCATION/tmux/.tmux.conf.local" $USER_HOME_DIRECTORY/.frapper/vendor/tmux
+    cp "$INSTALLER_LOCATION/.tmux.conf" $USER_HOME_DIRECTORY
+    cp "$INSTALLER_LOCATION/.tmux.conf.local" $USER_HOME_DIRECTORY
 }
 
 function install_deps {
@@ -61,9 +62,9 @@ function install_plugins {
     sudo chown -R "$INSTALLER_USER":"$INSTALLER_USER" ./
 
     cd $USER_HOME_DIRECTORY/.frapper/vendor/tmux
-    for plugin in "${tmux_plugin[@]}"
+    for plugin in "${tmux_plugins[@]}"
     do
-        sudo "${plugin}"
+        ${plugin}
     done
     sudo chown -R "$INSTALLER_USER":"$INSTALLER_USER" ./
 }
