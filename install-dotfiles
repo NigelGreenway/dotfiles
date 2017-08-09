@@ -9,6 +9,7 @@ then
     exit 1
 fi
 
+INSTALLER_USER=$(who | awk '{ print $1 }')
 USER_HOME_DIRECTORY=$(who | awk '{ print "/home/"$1 }')
 
 function initialise_frapper {
@@ -22,8 +23,18 @@ function install_dotfiles {
     cp "$INSTALLER_LOCATION/tmux/.tmux.conf.local" $USER_HOME_DIRECTORY/.frapper/vendor/tmux
 }
 
+function install_deps {
+    git clone https://github.com/powerline/fonts.git /tmp/fonts
+    cd /tmp/fonts
+    ./install.sh
+    cd -
+    rm -rf /tmp/fonts
+}
+
 # Download external tools/plugins
 function install_plugins {
+
+    install_deps
 
     local python_plugins=(
         'pygments'
@@ -35,6 +46,7 @@ function install_plugins {
 
     local tmux_plugins=(
         'curl https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf -o .tmux.conf'
+    )
 
     for plugin in "${python_plugins[@]}"
     do
@@ -44,14 +56,16 @@ function install_plugins {
     cd $USER_HOME_DIRECTORY/.frapper/vendor/bash
     for plugin in "${bash_plugins[@]}"
     do
-       sudo ${plugin}
+       ${plugin}
     done
+    sudo chown -R "$INSTALLER_USER":"$INSTALLER_USER" ./
 
     cd $USER_HOME_DIRECTORY/.frapper/vendor/tmux
     for plugin in "${tmux_plugin[@]}"
     do
         sudo "${plugin}"
     done
+    sudo chown -R "$INSTALLER_USER":"$INSTALLER_USER" ./
 }
 
 function run {
