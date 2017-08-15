@@ -82,26 +82,26 @@ function display_language_version {
 
         if [ -f "${project_root}/composer.json" ]
         then
+            local php_branding="\033[38;5;99m"
             has_a_package_manager=1
             local php_version=`php -v | grep "^PHP" | sed -n 's/.*\(PHP [[:digit:]].[[:digit:]].[[:digit:]]*\).*/\1/p'`
         fi
 
         if [ -f "${project_root}/package.json" ]
         then
+            local nodejs_branding="\033[38;5;148m"
             has_a_package_manager=1
-            local node_version=`node -v| sed 's/[^0-9.]//g' | awk '{ print "Njs",$1}'`
+            local node_version=`node -v| sed 's/[^0-9.]//g' | awk '{ print "Node",$1}'`
         fi
 
         if [ $has_a_package_manager == 1 ]
         then
-            echo -e "| ${php_version}${node_version}"
+            echo -e "| ${php_branding}${php_version} ${nodejs_branding}${node_version}"
         fi
     fi
 }
 
-USERNAME="${LIGHT_PURPLE}\u"
-HOSTNAME="${CYAN}\h"
-DIRECTORY="${GREEN}\w"
+DIRECTORY="${LIGHT_PURPLE}\w"
 GIT_INFO="\$(git_info)"
 USER_PROMPT="\n${CYAN}> ${WHITE}"
 LANGUAGE_VERSIONS="\$(display_language_version)"
@@ -113,8 +113,6 @@ unset LIGHT_PURPLE
 unset CYAN
 unset GREEN
 unset WHITE
-unset USERNAME
-unset HOSTNAME
 unset DIRECTORY
 unset GIT_INFO
 unset USER_PROMPT
