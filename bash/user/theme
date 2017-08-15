@@ -106,8 +106,8 @@ GIT_INFO="\$(git_info)"
 USER_PROMPT="\n${CYAN}> ${WHITE}"
 LANGUAGE_VERSIONS="\$(display_language_version)"
 
-export PS1="${USERNAME}@${HOSTNAME} ${DIRECTORY} ${LANGUAGE_VERSIONS} ${GIT_INFO}${USER_PROMPT}"
-export PS2="${CYAN}>${WHITE}"
+export PS1="${DIRECTORY} ${LANGUAGE_VERSIONS} ${GIT_INFO}${USER_PROMPT}"
+export PS2="${CYAN}>   ${WHITE}"
 
 unset LIGHT_PURPLE
 unset CYAN
