@@ -52,6 +52,11 @@ function git_info {
             [[ ${count} -gt 0 ]] && echo " ?:${count}"
         }
 
+        function stashed_count {
+            local count=`git stash | wc -l`
+            [[ ${count} -gt 0 ]] && echo "[${count}] "
+        }
+
         local project_path=`git rev-parse --show-toplevel`
         local branch_name="\e[95m$(git rev-parse --abbrev-ref HEAD)"
         local project_name="\e[96m${project_path##*/}"
@@ -62,6 +67,7 @@ function git_info {
         local staged="\e[32m$(staged_changes)"
         local tracked="\e[34m$(tracked_changes)"
         local unstaged="\e[31m$(unstaged_changes)"
+        local stash_count="\e[38m$(stashed_count)"
 
         function show_changes {
             if [[ $(git status -s | wc -l) -gt 0 ]]
@@ -70,7 +76,7 @@ function git_info {
             fi
         }
 
-        echo -e "\n${project_name}@${branch_name} ${dirty}${ahead}${behind}$(show_changes)"
+        echo -e "\n${project_name}@${branch_name} ${stash_count}${dirty}${ahead}${behind}$(show_changes)"
     fi
 }
 
