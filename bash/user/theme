@@ -54,7 +54,7 @@ function git_info {
 
         function stashed_count {
             local count=`git stash list| wc -l`
-            [[ ${count} -gt 0 ]] && echo -e "\e[97m[\e[37m${count}\e[97m] "
+            [[ ${count} -gt 0 ]] && echo -e "\e[97m[\e[94m${count}\e[97m] "
         }
 
         local project_path=`git rev-parse --show-toplevel`
