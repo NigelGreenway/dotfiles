@@ -53,7 +53,7 @@ function git_info {
         }
 
         function stashed_count {
-            local count=`git stash | wc -l`
+            local count=`git stash list| wc -l`
             [[ ${count} -gt 0 ]] && echo "[${count}] "
         }
 
