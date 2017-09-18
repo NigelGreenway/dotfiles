@@ -54,7 +54,7 @@ function git_info {
 
         function stashed_count {
             local count=`git stash list| wc -l`
-            [[ ${count} -gt 0 ]] && echo "[${count}] "
+            [[ ${count} -gt 0 ]] && echo -e "\e[97m[\e[37m${count}\e[97m] "
         }
 
         local project_path=`git rev-parse --show-toplevel`
@@ -67,7 +67,7 @@ function git_info {
         local staged="\e[32m$(staged_changes)"
         local tracked="\e[34m$(tracked_changes)"
         local unstaged="\e[31m$(unstaged_changes)"
-        local stash_count="\e[38m$(stashed_count)"
+        local stash_count="$(stashed_count)"
 
         function show_changes {
             if [[ $(git status -s | wc -l) -gt 0 ]]
