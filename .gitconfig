@@ -36,7 +36,8 @@
     s = status -s
     c = commit -v
     co = checkout
-    cb = checkout -b
+    cob = checkout -b
+    cop = checkout -
     ci = commit -m
     ca = commit -am
     ss = stash save
