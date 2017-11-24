@@ -35,7 +35,7 @@
     a = add -p
     s = status -s
     c = commit -v
-    co = checkout
+    co = "!f() { git checkout $(git branch --list *$1*); }; f"
     cob = checkout -b
     cop = checkout -
     ci = commit -m
