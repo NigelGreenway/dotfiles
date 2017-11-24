@@ -42,6 +42,8 @@
     ca = commit -am
     ss = stash save
     sl = stash list
+    rb = rebase
+    rbi = rebase -i
     u = push
     d = "!fupdate() { git fetch -p && git merge --ff-only; }; update"
     qa = diff --cached
