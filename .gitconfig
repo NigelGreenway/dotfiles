@@ -45,7 +45,7 @@
     rb = rebase
     rbi = rebase -i
     u = push
-    d = "!fupdate() { git fetch -p && git merge --ff-only; }; update"
+    update = "!f() { git fetch -p && git merge --ff-only; }; f"
     qa = diff --cached
     lg = log --graph --decorate --branches --oneline --remotes --tags --all --color
 [rerere]
