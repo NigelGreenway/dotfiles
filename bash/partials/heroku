@@ -10,7 +10,12 @@ function myroku {
         do
             if [ ! -z "$line" ]
             then
-                heroku config:set "$line"
+                if [ ! -z "$2" ]
+                then
+                   heroku config:set "$line" --app "$2"
+                else
+                    heroku config:set "$line"
+                fi
             fi
         done < "$filename"
     }
@@ -18,7 +23,7 @@ function myroku {
     case "$1" in
 
         'convert')
-            convert_env_to_heroku_config "$2"
+            convert_env_to_heroku_config "$2" "$3"
             ;;
 
         *)
