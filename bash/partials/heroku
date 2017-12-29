@@ -1,10 +1,29 @@
 #!/usr/bin/env bash
-filename="$1"
 
-while read -r line
-do
-    if [ ! -z "$line" ]
-    then
-        heroku config:set "$line"
-    fi
-done < "$filename"
+
+function myroku {
+
+    function convert_env_to_heroku_config {
+        filename="$1"
+
+        while read -r line
+        do
+            if [ ! -z "$line" ]
+            then
+                heroku config:set "$line"
+            fi
+        done < "$filename"
+    }
+
+    case "$1" in
+
+        'convert')
+            convert_env_to_heroku_config "$2"
+            ;;
+
+        *)
+            echo "Please select an option"
+            ;;
+
+    esac
+}
