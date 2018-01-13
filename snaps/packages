@@ -1,0 +1,7 @@
+#!/usr/env bash
+
+readonly pacakages=(
+    phpstorm
+    vscode
+    spotify
+)

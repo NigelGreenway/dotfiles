@@ -1,0 +1,38 @@
+#!/usr/env bash
+
+readonly packages=(
+    keepassxc
+    owncloud-client
+    gnome-tweak-too
+    steam
+    digikam
+    virt-manager
+    ghostwriter
+    gimp
+    inkscape
+)
+
+readonly drivers=(
+    nvidia-glx-driver-current
+    nvidia-glx-driver-32bit
+)
+
+readonly tools=(
+    xclip
+    vim
+    tmux
+    tilda
+    git
+    clipit
+    heroku
+)
+
+readonly budgie=(
+    budgie-screenshot-applet
+    budgie-calendar-applet
+    arc-gtk-theme
+    arc-icon-theme
+    flat-plat-gtk-theme
+    sardi-icons
+)
+
