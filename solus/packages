@@ -11,7 +11,7 @@ readonly solus_packages=(
     gimp
     inkscape
     calibre
-    snes9x-gtx
+    snes9x-gtk
     # Drivers
     nvidia-glx-driver-current
     nvidia-glx-driver-32bit
