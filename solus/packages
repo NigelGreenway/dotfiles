@@ -24,6 +24,8 @@ readonly solus_packages=(
     heroku-cli
     golang
     hugo
+    conky
+    conky-manager
     #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
