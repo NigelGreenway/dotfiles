@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 # Copy over the dotfiles
-function install_dotfiles {
+function copy_dotfiles {
     local INSTALLER_LOCATION=$(dirname "$(readlink -f "$0")")
     cp -r "$INSTALLER_LOCATION/bash/" $USER_HOME_DIRECTORY/.frapper/
     cp -r "$INSTALLER_LOCATION/home" $USER_HOME_DIRECTORY
@@ -40,7 +40,7 @@ function install_plugins {
 }
 
 function install_dotfiles {
-    install_dotfiles
+    copy_dotfiles
     install_plugins
 }
 
