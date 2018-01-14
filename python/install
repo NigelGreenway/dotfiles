@@ -1,0 +1,7 @@
+#!/usr/env bash
+
+function install_python_libs {
+    source ./packages
+
+    pip install "${python_plugins[@]}"
+}

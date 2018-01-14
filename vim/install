@@ -1,0 +1,30 @@
+#!/bin/env bash
+
+function install_vim_package {
+
+    function prep_vim_environment {
+        mkdir -p $HOME/.vim/undo
+    }
+
+    function install_pathogen {
+        mkdir -p $HOME/.vim/autoload ~/.vim/bundle && \
+        curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    }
+
+    function install_vim_plugins {
+        source ./plugins
+        for plugin in "${vim_plugins[@]}"
+        do
+            local plugin_name=`echo "${plugin}" | cut -d/ -f5 | cut -d. -f1`
+            git clone "${plugin}" "$HOME/.vim/bundle/${plugin_name}"
+        done
+    }
+
+    function run {
+        prep_vim_environment
+        install_pathogen
+        install_vim_plugins
+    }
+
+    run
+}

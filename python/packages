@@ -1,0 +1,6 @@
+#!/usr/env bash
+
+readonly python_plugins=(
+    pygments
+)
+
