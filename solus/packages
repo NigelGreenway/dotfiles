@@ -21,7 +21,7 @@ readonly solus_packages=(
     tilda
     git
     clipit
-    heroku
+    heroku-cli
     #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
