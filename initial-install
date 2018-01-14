@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+set -e
+
 eopkg install git -y
 
 git clone http://git.fpixels.net/nigelgreenway/dotfiles.git /tmp/dotfiles
