@@ -39,10 +39,9 @@ function install_plugins {
     sudo chown -R "$INSTALLER_USER":"$INSTALLER_USER" ./
 }
 
-function run {
+function install_dotfiles {
     initialise_frapper
     install_dotfiles
     install_plugins
 }
 
-run
