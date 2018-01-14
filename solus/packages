@@ -3,7 +3,7 @@
 readonly solus_packages=(
     keepassx
     owncloud-client
-    gnome-tweak-too
+    gnome-tweak-tool
     steam
     digikam
     virt-manager
