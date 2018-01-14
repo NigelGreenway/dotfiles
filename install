@@ -15,7 +15,7 @@ source ./vim/install
 source ./ruby/install
 source ./python/install
 source ./install-packages
-source ./intall-dotfiles
+source ./install-dotfiles
 
 INSTALLER_USER=$(who | awk '{ print $1 }')
 USER_HOME_DIRECTORY=$(who | awk '{ print "/home/"$1 }')
