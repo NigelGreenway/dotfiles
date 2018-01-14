@@ -27,6 +27,7 @@ readonly solus_packages=(
     hugo
     conky
     conky-manager
+    telegram
     #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
