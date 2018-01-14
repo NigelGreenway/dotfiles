@@ -7,5 +7,8 @@ _The initial idea is to have all of my dotfiles set up and then extract each sec
 To install, simply run the following:
 
 ```shell
-curl http://git.fpixels.net/NigelGreenway/dotfiles/raw/master/install-dotfiles -o /tmp/bash-installer && sudo /tmp/bash-installer
+curl http://git.fpixels.net/NigelGreenway/dotfiles/raw/master/install -o /tmp/dotfile-installer \
+    && sudo /tmp/dotfile-installer
 ```
+
+You are able to customise this - although limited - by editing the `package` files in the related subdirectories.

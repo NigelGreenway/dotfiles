@@ -1,26 +1,10 @@
 #!/bin/env bash
 
-# check if user is root
-if [ "$(id -u)" != 0 ]
-then
-    echo "Please log in as root"
-    echo -e "\e[31mRead the code before running!\n"
-
-    exit 1
-fi
-
-INSTALLER_USER=$(who | awk '{ print $1 }')
-USER_HOME_DIRECTORY=$(who | awk '{ print "/home/"$1 }')
-
-function initialise_frapper {
-    mkdir -p $USER_HOME_DIRECTORY/.frapper/vendor/{bash,tmux}
-}
-
 # Copy over the dotfiles
 function install_dotfiles {
     local INSTALLER_LOCATION=$(dirname "$(readlink -f "$0")")
     cp -r "$INSTALLER_LOCATION/bash/" $USER_HOME_DIRECTORY/.frapper/
-    cp "$INSTALLER_LOCATION/.tmux.conf.local" $USER_HOME_DIRECTORY
+    cp -r "$INSTALLER_LOCATION/home" $USER_HOME_DIRECTORY
     curl https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf -o $USER_HOME_DIRECTORY/.tmux.conf
 }
 
@@ -34,24 +18,11 @@ function install_deps {
 
 # Download external tools/plugins
 function install_plugins {
-
     install_deps
-
-    local python_plugins=(
-        'pygments'
-    )
 
     local bash_plugins=(
         'curl https://raw.githubusercontent.com/shyiko/commacd/master/commacd.bash -o commacd.bash'
     )
-
-    local tmux_plugins=(
-    )
-
-    for plugin in "${python_plugins[@]}"
-    do
-        pip install "${plugin}"
-    done
 
     cd $USER_HOME_DIRECTORY/.frapper/vendor/bash
     for plugin in "${bash_plugins[@]}"

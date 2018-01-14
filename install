@@ -1,0 +1,36 @@
+#!/usr/env bash
+
+# check if user is root
+if [ "$(id -u)" != 0 ]
+then
+    echo "Please log in as root"
+    echo -e "\e[31mRead the code before running!\n"
+
+    exit 1
+fi
+
+source ./solus/install
+source ./snaps/install
+source ./vim/install
+source ./ruby/install
+source ./python/install
+source ./install-packages
+source ./intall-dotfiles
+
+INSTALLER_USER=$(who | awk '{ print $1 }')
+USER_HOME_DIRECTORY=$(who | awk '{ print "/home/"$1 }')
+
+function initialise_frapper {
+    mkdir -p $USER_HOME_DIRECTORY/.frapper/vendor/{bash,tmux}
+}
+
+function main {
+    install_solus_packages
+    install_snaps
+    install_vim_packages
+    install_ruby_packages
+    install_misc_packages
+
+    install_dotfiles
+}
+

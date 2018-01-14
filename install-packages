@@ -1,7 +1,6 @@
 #!/bin/env bash
 
-
-function install_packages {
+function install_misc_packages {
 
     local manually_installed=(
         'curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash'
@@ -12,50 +11,3 @@ function install_packages {
         ${package}
     done
 }
-
-function install_vim_package {
-
-    function install_pathogen {
-        mkdir -p $HOME/.vim/autoload ~/.vim/bundle && \
-        curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-    }
-
-    function prep_vim_environment {
-        cp ./appConfigs/.vimrc $HOME/.vimrc
-        mkdir -p $HOME/.vim/undo
-    }
-
-    readonly vim_plugins=(
-        "https://github.com/scrooloose/nerdtree.git"
-        "https://github.com/Xuyuanp/nerdtree-git-plugin.git"
-        "https://github.com/ctrlpvim/ctrlp.vim.git"
-        "https://github.com/airblade/vim-gitgutter.git"
-        "https://github.com/editorconfig/editorconfig-vim.git"
-        "https://github.com/mxw/vim-jsx.git"
-        "https://github.com/flowtype/vim-flow"
-        "git://github.com/tpope/vim-surround.git"
-    )
-
-    function install_vim_plugins {
-        for plugin in "${vim_plugins[@]}"
-        do
-            local plugin_name=`echo "${plugin}" | cut -d/ -f5 | cut -d. -f1`
-            git clone "${plugin}" "$HOME/.vim/bundle/${plugin_name}"
-        done
-    }
-
-    function run {
-        prep_vim_environment
-        install_pathogen
-        install_vim_plugins
-    }
-
-    run
-}
-
-function run {
-    install_vim_package
-}
-
-
-run
