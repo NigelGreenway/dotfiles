@@ -1,6 +1,6 @@
 #!/bin/env bash
 
 function install_snaps {
-    source ./packages
+    source ./snaps/packages
     snap install "${snap_packages[@]}"
 }

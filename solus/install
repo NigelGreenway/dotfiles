@@ -1,6 +1,6 @@
 #!/bin/env bash
 
 function install_solus_packages {
-    source ./packages
+    source ./solus/packages
     eopkg install "${solus_packages[@]}" -y
 }

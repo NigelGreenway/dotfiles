@@ -12,7 +12,7 @@ function install_vim_package {
     }
 
     function install_vim_plugins {
-        source ./plugins
+        source ./vim/plugins
         for plugin in "${vim_plugins[@]}"
         do
             local plugin_name=`echo "${plugin}" | cut -d/ -f5 | cut -d. -f1`
