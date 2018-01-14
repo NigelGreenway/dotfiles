@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 readonly solus_packages=(
-    keepassxc
+    keepassx
     owncloud-client
     gnome-tweak-too
     steam
