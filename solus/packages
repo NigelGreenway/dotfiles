@@ -10,14 +10,11 @@ readonly packages=(
     ghostwriter
     gimp
     inkscape
-)
-
-readonly drivers=(
+    calibre
+    # Drivers
     nvidia-glx-driver-current
     nvidia-glx-driver-32bit
-)
-
-readonly tools=(
+    # tools
     xclip
     vim
     tmux
@@ -25,9 +22,7 @@ readonly tools=(
     git
     clipit
     heroku
-)
-
-readonly budgie=(
+    #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
     arc-gtk-theme
