@@ -1,6 +1,6 @@
 #!/usr/env bash
 
-readonly packages=(
+readonly solus_packages=(
     keepassxc
     owncloud-client
     gnome-tweak-too
