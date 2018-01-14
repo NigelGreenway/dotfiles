@@ -3,8 +3,13 @@
 function install_snaps {
     source ./snaps/packages
 
-    for package in "${snap_packages[@]}"
+    for package_index in "${!snap_packages[@]}"
     do
-        snap install "${package}"
+        if [ "${is_a_classic_package}" = true ]
+        then
+            snap install "${package} --classic"
+        else
+            snap install "${package}"
+        fi
     done
 }
