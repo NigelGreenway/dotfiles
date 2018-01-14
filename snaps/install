@@ -2,5 +2,5 @@
 
 function install_snaps {
     source ./snaps/packages
-    snap install "${snap_packages[@]}"
+    snap install "${snap_packages[@]}" --classic
 }
