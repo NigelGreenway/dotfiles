@@ -22,7 +22,7 @@ readonly solus_packages=(
     git
     clipit
     heroku-cli
-    go
+    golang
     hugo
     #Budgie
     budgie-screenshot-applet
