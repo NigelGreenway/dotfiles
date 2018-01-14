@@ -31,7 +31,7 @@ function main {
     install_snaps
     install_vim_packages
     install_ruby_packages
-    install_misc_packages
+#     install_misc_packages
 
     install_dotfiles
 }
