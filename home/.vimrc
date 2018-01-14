@@ -14,6 +14,11 @@ set undodir=~/.vimundo
 
 set list listchars=tab:⟶\ ,trail:·,extends:>,precedes:<,nbsp:%
 
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
