@@ -1,6 +1,6 @@
 #!/usr/env bash
 
-readonly pacakages=(
+readonly snap_packages=(
     phpstorm
     vscode
     spotify
