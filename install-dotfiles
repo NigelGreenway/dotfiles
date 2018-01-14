@@ -40,7 +40,6 @@ function install_plugins {
 }
 
 function install_dotfiles {
-    initialise_frapper
     install_dotfiles
     install_plugins
 }
