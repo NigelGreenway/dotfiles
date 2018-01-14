@@ -5,11 +5,11 @@ function install_snaps {
 
     for package_index in "${!snap_packages[@]}"
     do
-        if [ "${is_a_classic_package}" = true ]
+        if [ "${is_a_classic_package[$package_index]}" = true ]
         then
-            snap install "${package} --classic"
+            snap install "${snap_package[$package_index]} --classic"
         else
-            snap install "${package}"
+            snap install "${snap_package[$package_index]}"
         fi
     done
 }
