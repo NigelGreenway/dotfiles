@@ -6,4 +6,4 @@ eopkg install git -y
 
 git clone http://git.fpixels.net/nigelgreenway/dotfiles.git /tmp/dotfiles
 
-sudo /tmp/dotfiles/install
+/tmp/dotfiles/install
