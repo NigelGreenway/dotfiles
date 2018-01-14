@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-function install_vim_package {
+function install_vim_packages {
 
     function prep_vim_environment {
         mkdir -p $HOME/.vim/undo
