@@ -4,7 +4,7 @@
 function copy_dotfiles {
     local INSTALLER_LOCATION=$(dirname "$(readlink -f "$0")")
     cp -r "$INSTALLER_LOCATION/bash/" $USER_HOME_DIRECTORY/.frapper/
-    cp -r "$INSTALLER_LOCATION/home" $USER_HOME_DIRECTORY
+    cp -r "$INSTALLER_LOCATION/home/*" $USER_HOME_DIRECTORY
     curl https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf -o $USER_HOME_DIRECTORY/.tmux.conf
 }
 
