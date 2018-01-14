@@ -22,6 +22,8 @@ readonly solus_packages=(
     git
     clipit
     heroku-cli
+    go
+    hugo
     #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
