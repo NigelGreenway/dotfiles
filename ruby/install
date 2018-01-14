@@ -1,0 +1,7 @@
+#!/bin/env bash
+
+function install_ruby_packages {
+    source ./ruby/packages
+
+    gem install "${ruby_packages[@]}"
+}

@@ -1,0 +1,13 @@
+#!/bin/env bash
+
+readonly snap_packages=(
+    phpstorm
+    vscode
+    spotify
+)
+
+readonly is_a_classic_package=(
+    true
+    true
+    false
+)

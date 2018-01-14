@@ -1,0 +1,39 @@
+#!/bin/env bash
+
+readonly solus_packages=(
+    keepassx
+    owncloud-client
+    gnome-tweak-tool
+    steam
+    digikam
+    virt-manager
+    ghostwriter
+    gimp
+    inkscape
+    calibre
+    snes9x-gtk
+    # Drivers
+    nvidia-glx-driver-current
+    nvidia-glx-driver-32bit
+    # tools
+    xclip
+    vim
+    tmux
+    tilda
+    git
+    clipit
+    heroku-cli
+    golang
+    hugo
+    conky
+    conky-manager
+    telegram
+    #Budgie
+    budgie-screenshot-applet
+    budgie-calendar-applet
+    arc-gtk-theme
+    arc-icon-theme
+    flat-plat-gtk-theme
+    sardi-icons
+)
+

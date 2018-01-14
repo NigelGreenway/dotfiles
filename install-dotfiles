@@ -1,0 +1,46 @@
+#!/bin/env bash
+
+# Copy over the dotfiles
+function copy_dotfiles {
+    local INSTALLER_LOCATION=$(dirname "$(readlink -f "$0")")
+    cp -r "$INSTALLER_LOCATION/bash/" $USER_HOME_DIRECTORY/.frapper/
+    cp -r "$INSTALLER_LOCATION/home/*" $USER_HOME_DIRECTORY
+    curl https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf -o $USER_HOME_DIRECTORY/.tmux.conf
+}
+
+function install_deps {
+    git clone https://github.com/powerline/fonts.git /tmp/fonts
+    cd /tmp/fonts
+    ./install.sh
+    cd -
+    rm -rf /tmp/fonts
+}
+
+# Download external tools/plugins
+function install_plugins {
+    install_deps
+
+    local bash_plugins=(
+        'curl https://raw.githubusercontent.com/shyiko/commacd/master/commacd.bash -o commacd.bash'
+    )
+
+    cd $USER_HOME_DIRECTORY/.frapper/vendor/bash
+    for plugin in "${bash_plugins[@]}"
+    do
+       ${plugin}
+    done
+    sudo chown -R "$INSTALLER_USER":"$INSTALLER_USER" ./
+
+    cd $USER_HOME_DIRECTORY/.frapper/vendor/tmux
+    for plugin in "${tmux_plugins[@]}"
+    do
+        ${plugin}
+    done
+    sudo chown -R "$INSTALLER_USER":"$INSTALLER_USER" ./
+}
+
+function install_dotfiles {
+    copy_dotfiles
+    install_plugins
+}
+

@@ -1,0 +1,5 @@
+#!/bin/env bash
+
+## GIT Icons
+SCM_GIT_AHEAD_CHAR="↑"
+SCM_GIT_BEHIND_CHAR="↓"

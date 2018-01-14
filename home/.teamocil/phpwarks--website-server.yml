@@ -1,0 +1,6 @@
+windows:
+ - name: PHPWarks - Website Server
+   root: ~/Projects/PHP/Projects/PHPWarks/website-server
+   layout: even-horizontal
+   panes:
+     - git s

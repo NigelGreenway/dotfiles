@@ -1,0 +1,5 @@
+#!/bin/env bash
+
+readonly ruby_packages=(
+    teamocil
+)

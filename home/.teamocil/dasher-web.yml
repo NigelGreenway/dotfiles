@@ -1,0 +1,8 @@
+windows:
+    - name: Dasher - Web
+      root: ~/Projects/NodeJS/Dasher/web
+      layout: main-vertical
+      panes:
+          - git s
+          - npm start
+          - npm test -- --watch

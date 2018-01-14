@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+function install_snaps {
+    source ./snaps/packages
+
+    for package_index in "${!snap_packages[@]}"
+    do
+        if [ "${is_a_classic_package[$package_index]}" = true ]
+        then
+            snap install "${snap_packages[$package_index]}" "--classic"
+        else
+            snap install "${snap_packages[$package_index]}"
+        fi
+    done
+}

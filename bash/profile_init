@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ -d $HOME/.frapper ]; then
+    # Go get all the imports
+    for file in $(find -L ${HOME}/.frapper/bash/{flags,partials,user,aliases} -type f)
+    do
+        source $file
+    done
+
+    # Go get all the installed bash plugins
+    for plugin in $(find -L $HOME/.frapper/vendor/bash -type f)
+    do
+        source $plugin
+    done
+
+    # Check if tmux is loaded and then loaded
+    if command -v tmux > /dev/null; then
+        [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+    fi
+fi

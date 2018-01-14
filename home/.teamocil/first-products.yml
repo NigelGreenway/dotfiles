@@ -1,0 +1,7 @@
+windows:
+ - name: First Products App
+   root: ~/1U/Projects/online__customer-first--products
+   layout: even-horizontal
+   panes:
+     - git s
+     - npm run start::dev

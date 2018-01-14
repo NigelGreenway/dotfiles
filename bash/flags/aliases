@@ -1,0 +1,7 @@
+#!/bin/env bash
+# When creating flags, please adhere to the following:
+# - Alway prefix flags with FRAPPER__ALIAS__
+# - Write it in a way that makes sense when reading
+
+
+FRAPPER__ALIAS__CLEAR_PROMPT_ON_RELOAD=true

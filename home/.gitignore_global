@@ -1,0 +1,7 @@
+.tags
+.tags*
+.idea
+.idea/*
+.vscode
+.vagrant
+scratch
