@@ -25,6 +25,8 @@ function initialise_frapper {
 }
 
 function main {
+    initialise_frapper
+
     install_solus_packages
     install_snaps
     install_vim_packages
