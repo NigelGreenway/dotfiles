@@ -28,6 +28,12 @@ readonly solus_packages=(
     conky
     conky-manager
     telegram
+    powerline
+    zsh
+    docker
+    docker-compose
+    pip
+    openssh-server
     #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
