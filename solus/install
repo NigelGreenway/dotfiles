@@ -1,6 +1,14 @@
 #!/bin/env bash
 
 function install_solus_packages {
+
+    function install_support_packages {
+        eopkg install -c system.devel -y
+    }
+
+
     source ./solus/packages
     eopkg install "${solus_packages[@]}" -y
+
+    install_support_packages
 }
