@@ -24,6 +24,12 @@ function initialise_frapper {
     mkdir -p $USER_HOME_DIRECTORY/.frapper/vendor/{bash,tmux}
 }
 
+function setup_zsh_environment {
+    chsh -s /bin/zsh
+    ln -s /usr/share/defaults/etc/shells /etc/shells
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+}
+
 function main {
     initialise_frapper
 
