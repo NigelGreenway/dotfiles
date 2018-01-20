@@ -18,6 +18,10 @@ function install_vim_packages {
             local plugin_name=`echo "${plugin}" | cut -d/ -f5 | cut -d. -f1`
             git clone "${plugin}" "$HOME/.vim/bundle/${plugin_name}"
         done
+
+        cd $HOME/.vim/bundle/vimproc.vim
+        make
+        cd -
     }
 
     function run {
