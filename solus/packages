@@ -34,6 +34,7 @@ readonly solus_packages=(
     docker-compose
     pip
     openssh-server
+    php
     #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
