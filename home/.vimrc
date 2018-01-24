@@ -30,10 +30,7 @@ let NERDTreeShowHidden=1
 " map <Leader>f <Plug>(easymotion-bd-f)
 
 map <S-s> :write<CR>
-map <S-w> :bdelete<CR>
 imap jk <ESC>
-
-
 
 " Commenting blocks of code.
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
