@@ -12,4 +12,5 @@ readonly vim_plugins=(
     "https://github.com/bling/vim-airline"
     "https://github.com/m2mdas/phpcomplete-extended"
     "https://github.com/Shougo/vimproc.vim.git"
+    "https://github.com/ntpeters/vim-better-whitespace.git"
 )
