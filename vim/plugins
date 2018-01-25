@@ -15,4 +15,6 @@ readonly vim_plugins=(
     "https://github.com/ntpeters/vim-better-whitespace.git"
     "https://github.com/diepm/vim-rest-console"
     "https://github.com/tpope/vim-commentary"
+    "https://github.com/vim-scripts/vim-webdevicons.git"
+    "https://github.com/vim-scripts/ctags.vim.git"
 )
