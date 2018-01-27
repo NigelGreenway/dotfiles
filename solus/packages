@@ -35,6 +35,8 @@ readonly solus_packages=(
     pip
     openssh-server
     php
+    make
+    ctags
     #Budgie
     budgie-screenshot-applet
     budgie-calendar-applet
