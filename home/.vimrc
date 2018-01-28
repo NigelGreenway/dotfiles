@@ -7,13 +7,14 @@ set expandtab
 set autoindent
 set noswapfile
 set nobackup
+set ruler
+set encoding=utf8
 
 set cursorline
 set undofile
-set undodir=~/.vimundo
+set undodir=~/.vim/undo
 
 set list listchars=tab:⟶\ ,trail:·,extends:>,precedes:<,nbsp:%
-
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
@@ -23,22 +24,35 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
+set guifont=FuraCode\ Nerd\ Font:h15
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+let g:airline_powerline_fonts = 1
 
-" Commenting blocks of code.
-autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-autocmd FileType conf,fstab       let b:comment_leader = '# '
-autocmd FileType tex              let b:comment_leader = '% '
-autocmd FileType mail             let b:comment_leader = '> '
-autocmd FileType vim              let b:comment_leader = '" '
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeMapActivateNode='<TAB>'
+let NERDTreeShowHidden=1
+map <C-1> :NERDTreeFocus<CR>
+
+map <S-s> :write<CR>
+map <C-e> :buffers<CR>
+imap jk <ESC>
+
+" Use EasyMotion for default Vim search
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+" DevIcons
+" after a re-source, fix syntax matching issues (concealing brackets):
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " Theme settings
-colorscheme slate
+colorscheme dracula
 hi CursorLine cterm=NONE ctermbg=black
+
