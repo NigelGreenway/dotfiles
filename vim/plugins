@@ -18,6 +18,10 @@ readonly vim_plugins=(
     "https://github.com/vim-scripts/vim-webdevicons.git"
     "https://github.com/vim-scripts/ctags.vim.git"
     "https://github.com/tpope/vim-fugitive.git"
-    "https://github.com/mattn/emmet-vim"
-    "https://github.com/vim-syntastic/syntastic"
+    "https://github.com/mattn/emmet-vim.git"
+    "https://github.com/vim-syntastic/syntastic.git"
+    "https://github.com/pangloss/vim-javascript.git"
+    "https://github.com/eslint/eslint"
+    "https://github.com/ap/vim-css-color"
+    "https://github.com/prettier/vim-prettier"
 )
