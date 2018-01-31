@@ -24,4 +24,6 @@ readonly vim_plugins=(
     "https://github.com/eslint/eslint"
     "https://github.com/ap/vim-css-color"
     "https://github.com/prettier/vim-prettier"
+    "http://github.com/sjl/gundo.vim.git"
+    "https://github.com/mtscout6/syntastic-local-eslint.vim"
 )
