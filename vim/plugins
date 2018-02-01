@@ -27,4 +27,5 @@ readonly vim_plugins=(
     "http://github.com/sjl/gundo.vim.git"
     "https://github.com/mtscout6/syntastic-local-eslint.vim"
     "https://github.com/beyondwords/vim-twig"
+    "https://github.com/craigmery/vim-autotag.git"
 )
