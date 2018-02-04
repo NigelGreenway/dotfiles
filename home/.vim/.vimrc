@@ -35,9 +35,6 @@ map <S-s> :write<CR>
 map <C-e> :buffers<CR>
 imap jk <ESC>
 
-
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$\|node_modules\|vendor\|coverage\|flow-typed'
-
 " DevIcons
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
