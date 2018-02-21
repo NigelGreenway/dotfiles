@@ -24,7 +24,7 @@ function git_info {
         function is_dirty {
             if [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]
             then
-                echo -e "\e[31m✗ \e[35m|"
+                echo -e "\e[31m✗"
             else
                 echo -e "\e[32m✓"
             fi
@@ -57,7 +57,6 @@ function git_info {
 
         local project_path=`git rev-parse --show-toplevel`
         local branch_name="\e[95m$(git rev-parse --abbrev-ref HEAD)"
-        local project_name="\e[96m${project_path##*/}"
         local ahead="\e[32m$(is_ahead)"
         local behind="\e[31m$(is_behind)"
         local dirty="$(is_dirty)"
@@ -74,11 +73,10 @@ function git_info {
             fi
         }
 
-        echo -e "\n${project_name}@${branch_name} ${stash_count}${dirty}${ahead}${behind}$(show_changes)"
+        echo -e "\n${branch_name} ${dirty}${ahead}${behind}\n${stash_count}$(show_changes)"
     fi
 }
 
 
 PROMPT='%F{cyan}%~%F{magenta}$(git_info)
 %F{yellow}${ZSH_THEME_PROMPT_CHAR}'
-
